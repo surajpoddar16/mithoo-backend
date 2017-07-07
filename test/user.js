@@ -22,4 +22,18 @@ describe('User', function() {
         done();
       });
   });
+
+  it("expects friends list", function(done) {
+    chai.request(server)
+      .get('/user/friends')
+      .end(function(err, res) {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.be.a('object');
+        expect(res.body.status).to.equal(true);
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.data).to.be.a('array');
+        expect(res.body.data.length).to.be.above(0);
+        done();
+      });
+  });
 });
