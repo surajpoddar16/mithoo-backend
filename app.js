@@ -24,6 +24,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var clientRoutes = require('./routes/client');
+var SocketManager = require('./routes/socket_manager');
 
 
 // View engine setup
@@ -47,6 +48,8 @@ app.use('/public', express.static('public'));
 
 var server = app.listen(process.env.PORT || config.get('port'))
 console.log("Application listening on port " + config.get('port'));
+
+var socketManager = new SocketManager(server);
 
 exports.app = app;
 exports.server = server;
