@@ -4,6 +4,7 @@ process.env.NODE_CONFIG_DIR = __dirname + '/config';
 var applicableEnvs = [
     'production'
     ,'development'
+    ,'test'
 ];
 
 if (applicableEnvs.indexOf(process.env.NODE_ENV) === -1) {
@@ -17,7 +18,6 @@ if (applicableEnvs.indexOf(process.env.NODE_ENV) === -1) {
 // Load Dependencies
 var express = require('express');
 var app = express();
-var http = require('http');
 var config = require('config');
 var morgan = require('morgan');
 var path = require('path');
@@ -45,9 +45,8 @@ app.use('/', clientRoutes);
 // Serve static files from public folder
 app.use('/public', express.static('public'));
 
-app.set('port', process.env.PORT || config.get('port'));
+var server = app.listen(process.env.PORT || config.get('port'))
+console.log("Application listening on port " + config.get('port'));
 
-var server = http.createServer(app);
-server.listen(app.get('port'), function() {
-    console.log("Application listening on port " + app.get('port'));
-});
+exports.app = app;
+exports.server = server;
