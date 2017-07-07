@@ -4,7 +4,6 @@ process.env.NODE_CONFIG_DIR = __dirname + '/config';
 var applicableEnvs = [
     'production'
     ,'development'
-    ,'testing'
 ];
 
 if (applicableEnvs.indexOf(process.env.NODE_ENV) === -1) {
