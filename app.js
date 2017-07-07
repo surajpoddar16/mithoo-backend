@@ -42,6 +42,9 @@ app.use(morgan('combined'));
 // Route Handler
 app.use('/', clientRoutes);
 
+// Serve static files from public folder
+app.use('/public', express.static('public'));
+
 app.set('port', process.env.PORT || config.get('port'));
 
 var server = http.createServer(app);
