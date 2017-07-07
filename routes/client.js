@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/user/avatar', user.getAvatar);
+router.get('/user/friends', user.getFriends);
 
 // Exported values
 module.exports = router;
