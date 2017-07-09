@@ -20,6 +20,7 @@ function getAvatar(req, res) {
 }
 
 function getFriends(req, res) {
+  var search = req.query.search || "";
   if (typeof friends !== 'undefined') {
     onSuccess(friends, res);
     return;
@@ -39,7 +40,7 @@ function getFriends(req, res) {
   function onSuccess(friends, res) {
     res.send({
       message: 'Friends list fetched',
-      data: friends,
+      data: friends.filter((item) => { return item.avatar.name.includes(search) }),
       status: true
     });
   }

@@ -12,7 +12,7 @@ function getNewAvatar() {
 
 function Avatar() {
   this.name = moniker.choose();
-  this.profileImage = path.join(__dirname, `../public/images/avatar_${this.getRandomIndex()}.png`);
+  this.profileImage = `/public/images/avatar_${this.getRandomIndex()}.png`;
 }
 
 Avatar.prototype.get = function() {
